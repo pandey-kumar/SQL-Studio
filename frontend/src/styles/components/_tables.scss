@@ -1,0 +1,191 @@
+// ==========================================
+// TABLE COMPONENT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid $border-primary;
+  background: $bg-secondary;
+  
+  @include custom-scrollbar;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  
+  &__head {
+    background: $bg-tertiary;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  &__header {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: $text-secondary;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    border-bottom: 1px solid $border-primary;
+    
+    &--center {
+      text-align: center;
+    }
+    
+    &--right {
+      text-align: right;
+    }
+  }
+  
+  &__body {
+    .table__row {
+      transition: background-color 0.15s ease;
+      
+      &:hover {
+        background: rgba($primary-500, 0.05);
+      }
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid $border-primary;
+      }
+    }
+  }
+  
+  &__cell {
+    padding: 0.875rem 1rem;
+    color: $text-primary;
+    vertical-align: middle;
+    
+    &--center {
+      text-align: center;
+    }
+    
+    &--right {
+      text-align: right;
+    }
+    
+    &--mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+    }
+    
+    &--muted {
+      color: $text-secondary;
+    }
+    
+    &--null {
+      color: $text-muted;
+      font-style: italic;
+    }
+  }
+  
+  &__empty {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: $text-muted;
+    
+    svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+}
+
+// Results table (query results)
+.results-table {
+  @include custom-scrollbar;
+  
+  &__wrapper {
+    max-height: 400px;
+    overflow: auto;
+    
+    @include lg {
+      max-height: 500px;
+    }
+  }
+  
+  .table {
+    &__header {
+      background: linear-gradient(135deg, rgba($primary-500, 0.1) 0%, rgba($accent-500, 0.05) 100%);
+      color: $primary-300;
+    }
+    
+    &__cell {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      
+      @include lg {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// Schema table (sample data viewer)
+.schema-table {
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &__name {
+    @include flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, $bg-tertiary 0%, $bg-elevated 100%);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid $border-primary;
+    border-bottom: none;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $accent-400;
+    }
+    
+    span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $accent-400;
+    }
+  }
+  
+  .table-container {
+    border-radius: 0 0 12px 12px;
+    border-top: none;
+  }
+  
+  .table {
+    &__header {
+      padding: 0.625rem 0.875rem;
+      font-size: 0.6875rem;
+    }
+    
+    &__cell {
+      padding: 0.5rem 0.875rem;
+      font-size: 0.75rem;
+      
+      @include lg {
+        font-size: 0.8125rem;
+      }
+    }
+  }
+}

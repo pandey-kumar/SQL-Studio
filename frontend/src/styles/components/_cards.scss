@@ -1,0 +1,198 @@
+// ==========================================
+// CARD COMPONENT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.card {
+  @include card-base;
+  padding: 1.25rem;
+  
+  @include sm {
+    padding: 1.5rem;
+  }
+  
+  // Interactive card with hover
+  &--interactive {
+    @include card-hover;
+    cursor: pointer;
+  }
+  
+  // Glass effect card
+  &--glass {
+    @include glass-card;
+  }
+  
+  // Elevated card
+  &--elevated {
+    box-shadow: $shadow-lg;
+  }
+  
+  // Bordered card
+  &--bordered {
+    border-width: 2px;
+  }
+  
+  // Gradient border card
+  &--gradient-border {
+    position: relative;
+    border: none;
+    background: var(--bg-secondary);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: $gradient-primary;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+  }
+  
+  // Sections
+  &__header {
+    @include flex-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    
+    @include lg {
+      font-size: 1.25rem;
+    }
+  }
+  
+  &__subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+  
+  &__body {
+    flex: 1;
+  }
+  
+  &__footer {
+    @include flex-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-primary);
+  }
+  
+  // Badge position
+  &__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  // Action buttons
+  &__actions {
+    @include flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+// Assignment Card - Special styling
+.assignment-card {
+  @include card-base;
+  @include card-hover;
+  position: relative;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  
+  // Decorative gradient corner
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at top right, rgba($primary-500, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  &__header {
+    @include flex-between;
+    gap: 1rem;
+  }
+  
+  &__difficulty {
+    flex-shrink: 0;
+  }
+  
+  &__category {
+    @include badge-base;
+    background: rgba($primary-500, 0.1);
+    color: $primary-400;
+    border: 1px solid rgba($primary-500, 0.2);
+    font-size: 0.625rem;
+  }
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.4;
+    
+    @include lg {
+      font-size: 1.25rem;
+    }
+  }
+  
+  &__description {
+    @include line-clamp(2);
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+  
+  &__meta {
+    @include flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid $border-primary;
+  }
+  
+  &__meta-item {
+    @include flex-start;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: $text-tertiary;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+      color: $text-muted;
+    }
+  }
+  
+  &__points {
+    @include flex-center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $accent-400;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

@@ -1,0 +1,201 @@
+// ==========================================
+// MODAL COMPONENT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  @include flex-center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  @include card-base;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: scaleIn 0.3s ease;
+  
+  @include sm {
+    max-width: 560px;
+  }
+  
+  &--lg {
+    max-width: 720px;
+  }
+  
+  &--xl {
+    max-width: 960px;
+  }
+  
+  &--full {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  &__header {
+    @include flex-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid $border-primary;
+    flex-shrink: 0;
+  }
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    
+    @include sm {
+      font-size: 1.25rem;
+    }
+  }
+  
+  &__close {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    color: $text-secondary;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &:hover {
+      background: $bg-elevated;
+      color: $text-primary;
+    }
+  }
+  
+  &__body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+    
+    @include custom-scrollbar;
+  }
+  
+  &__footer {
+    @include flex-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid $border-primary;
+    flex-shrink: 0;
+    
+    @include max-xs {
+      flex-direction: column;
+    }
+  }
+  
+  &__actions {
+    @include flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    
+    @include max-xs {
+      width: 100%;
+      
+      .btn {
+        flex: 1;
+      }
+    }
+  }
+}
+
+// Auth modal specific
+.auth-modal {
+  &__tabs {
+    @include flex-center;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: $bg-tertiary;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  &__tab {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &--active {
+      background: $bg-elevated;
+      color: $text-primary;
+    }
+    
+    &:hover:not(&--active) {
+      color: $text-primary;
+    }
+  }
+  
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  &__divider {
+    @include flex-center;
+    gap: 1rem;
+    margin: 1rem 0;
+    
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $border-primary;
+    }
+    
+    span {
+      font-size: 0.75rem;
+      color: $text-muted;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__social {
+    @include flex-center;
+    gap: 0.75rem;
+  }
+  
+  &__social-btn {
+    @include flex-center;
+    flex: 1;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: $bg-tertiary;
+    border: 1px solid $border-primary;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-primary;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    &:hover {
+      background: $bg-elevated;
+      border-color: $border-secondary;
+    }
+  }
+}

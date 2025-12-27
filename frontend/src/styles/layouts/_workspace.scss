@@ -1,0 +1,269 @@
+// ==========================================
+// WORKSPACE LAYOUT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  
+  @include lg {
+    min-height: calc(100vh - 72px);
+  }
+  
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border-primary;
+    
+    @include sm {
+      padding: 1.25rem 1.5rem;
+    }
+    
+    @include lg {
+      padding: 1.5rem 2rem;
+    }
+  }
+  
+  &__breadcrumb {
+    @include flex-start;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: $text-muted;
+    
+    a {
+      color: $text-secondary;
+      
+      &:hover {
+        color: $primary-400;
+      }
+    }
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    
+    @include sm {
+      font-size: 1.25rem;
+    }
+    
+    @include lg {
+      font-size: 1.5rem;
+    }
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 0.5rem;
+  }
+  
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    @include lg {
+      flex-direction: row;
+    }
+  }
+  
+  &__sidebar {
+    width: 100%;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border-primary;
+    overflow: auto;
+    
+    @include lg {
+      width: 380px;
+      min-width: 320px;
+      max-width: 450px;
+      border-bottom: none;
+      border-right: 1px solid $border-primary;
+      resize: horizontal;
+    }
+    
+    @include xl {
+      width: 420px;
+    }
+    
+    @include custom-scrollbar;
+  }
+  
+  &__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+  
+  &__editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    @include lg {
+      flex-direction: row;
+    }
+  }
+  
+  &__editor {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    
+    @include lg {
+      min-height: 0;
+    }
+  }
+  
+  &__results {
+    height: 250px;
+    min-height: 150px;
+    border-top: 1px solid $border-primary;
+    resize: vertical;
+    overflow: hidden;
+    
+    @include lg {
+      height: 300px;
+      max-height: 50vh;
+    }
+  }
+}
+
+// Split view for editor
+.split-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  @include lg {
+    flex-direction: row;
+  }
+  
+  &__pane {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    &:first-child {
+      border-bottom: 1px solid $border-primary;
+      
+      @include lg {
+        border-bottom: none;
+        border-right: 1px solid $border-primary;
+      }
+    }
+  }
+  
+  &__resizer {
+    flex-shrink: 0;
+    background: $bg-tertiary;
+    
+    &--horizontal {
+      height: 6px;
+      cursor: row-resize;
+      
+      @include lg {
+        display: none;
+      }
+      
+      &:hover {
+        background: $primary-500;
+      }
+    }
+    
+    &--vertical {
+      display: none;
+      
+      @include lg {
+        display: block;
+        width: 6px;
+        cursor: col-resize;
+        
+        &:hover {
+          background: $primary-500;
+        }
+      }
+    }
+  }
+}
+
+// Panel tabs
+.panel-tabs {
+  @include flex-start;
+  gap: 0;
+  background: $bg-tertiary;
+  border-bottom: 1px solid $border-primary;
+  overflow-x: auto;
+  
+  @include custom-scrollbar;
+  
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+  
+  &__tab {
+    @include flex-center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: $text-muted;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    &:hover {
+      color: $text-secondary;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    &--active {
+      color: $primary-400;
+      border-bottom-color: $primary-500;
+      background: rgba($primary-500, 0.05);
+    }
+  }
+}
+
+// Panel content
+.panel-content {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+  
+  @include sm {
+    padding: 1.25rem;
+  }
+  
+  @include lg {
+    padding: 1.5rem;
+  }
+  
+  @include custom-scrollbar;
+}

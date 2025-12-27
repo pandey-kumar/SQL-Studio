@@ -1,0 +1,173 @@
+// ==========================================
+// TOAST NOTIFICATION STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+// Custom styles for react-hot-toast
+.toast-container {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.custom-toast {
+  @include flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: $bg-elevated;
+  border: 1px solid $border-secondary;
+  border-radius: 12px;
+  box-shadow: $shadow-lg;
+  color: $text-primary;
+  font-size: 0.875rem;
+  max-width: 400px;
+  
+  &__icon {
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  &__title {
+    font-weight: 600;
+    margin-bottom: 0.125rem;
+  }
+  
+  &__message {
+    color: $text-secondary;
+    font-size: 0.8125rem;
+  }
+  
+  // Success variant
+  &--success {
+    border-color: rgba($success-500, 0.3);
+    
+    .custom-toast__icon {
+      background: rgba($success-500, 0.15);
+      color: $success-400;
+    }
+  }
+  
+  // Error variant
+  &--error {
+    border-color: rgba($error-500, 0.3);
+    
+    .custom-toast__icon {
+      background: rgba($error-500, 0.15);
+      color: $error-400;
+    }
+  }
+  
+  // Warning variant
+  &--warning {
+    border-color: rgba($warning-500, 0.3);
+    
+    .custom-toast__icon {
+      background: rgba($warning-500, 0.15);
+      color: $warning-400;
+    }
+  }
+  
+  // Info variant
+  &--info {
+    border-color: rgba($accent-500, 0.3);
+    
+    .custom-toast__icon {
+      background: rgba($accent-500, 0.15);
+      color: $accent-400;
+    }
+  }
+}
+
+// Alert component
+.alert {
+  @include flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  
+  &__icon {
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  &__title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  &__message {
+    font-size: 0.8125rem;
+    color: inherit;
+    opacity: 0.8;
+  }
+  
+  &__close {
+    @include flex-center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    color: inherit;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  // Variants
+  &--success {
+    background: rgba($success-500, 0.1);
+    border: 1px solid rgba($success-500, 0.2);
+    color: $success-400;
+  }
+  
+  &--error {
+    background: rgba($error-500, 0.1);
+    border: 1px solid rgba($error-500, 0.2);
+    color: $error-400;
+  }
+  
+  &--warning {
+    background: rgba($warning-500, 0.1);
+    border: 1px solid rgba($warning-500, 0.2);
+    color: $warning-400;
+  }
+  
+  &--info {
+    background: rgba($accent-500, 0.1);
+    border: 1px solid rgba($accent-500, 0.2);
+    color: $accent-400;
+  }
+}

@@ -1,0 +1,15 @@
+// ==========================================
+// MAIN STYLES - Entry Point
+// ==========================================
+
+// Import all base styles
+@use 'base';
+
+// Import component styles
+@use 'components';
+
+// Import layout styles
+@use 'layouts';
+
+// Import page-specific styles
+@use 'pages';

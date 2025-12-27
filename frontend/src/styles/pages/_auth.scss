@@ -1,0 +1,202 @@
+// ==========================================
+// AUTH PAGE STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.auth-page {
+  min-height: calc(100vh - 64px);
+  @include flex-center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+  
+  // Background decoration
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba($primary-500, 0.1) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 80%, rgba($accent-500, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  
+  &__container {
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  &__card {
+    @include card-base;
+    padding: 2rem;
+    
+    @include sm {
+      padding: 2.5rem;
+    }
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  &__logo {
+    @include flex-center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    
+    &-icon {
+      width: 48px;
+      height: 48px;
+    }
+    
+    &-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-primary;
+      
+      span {
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+  
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__subtitle {
+    font-size: 0.9375rem;
+    color: $text-secondary;
+  }
+  
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  &__footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid $border-primary;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    
+    a {
+      font-weight: 500;
+    }
+  }
+  
+  // Password strength indicator
+  &__password-strength {
+    margin-top: 0.5rem;
+    
+    &-bar {
+      height: 4px;
+      background: $bg-tertiary;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.25rem;
+      
+      &-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s ease, background-color 0.3s ease;
+        
+        &--weak { width: 25%; background: $error-500; }
+        &--fair { width: 50%; background: $warning-500; }
+        &--good { width: 75%; background: $accent-500; }
+        &--strong { width: 100%; background: $success-500; }
+      }
+    }
+    
+    &-text {
+      font-size: 0.75rem;
+      
+      &--weak { color: $error-400; }
+      &--fair { color: $warning-400; }
+      &--good { color: $accent-400; }
+      &--strong { color: $success-400; }
+    }
+  }
+  
+  // Remember me & forgot password
+  &__options {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  &__forgot {
+    font-size: 0.875rem;
+    color: $primary-400;
+    
+    &:hover {
+      color: $primary-300;
+    }
+  }
+  
+  // Social login
+  &__divider {
+    @include flex-center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $border-primary;
+    }
+    
+    span {
+      font-size: 0.75rem;
+      color: $text-muted;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  &__social-btn {
+    @include flex-center;
+    flex: 1;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: $bg-tertiary;
+    border: 1px solid $border-primary;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-primary;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &:hover {
+      background: $bg-elevated;
+      border-color: $border-secondary;
+    }
+  }
+}

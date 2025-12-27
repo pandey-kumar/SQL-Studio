@@ -1,0 +1,29 @@
+{
+  "name": "ciphersqlstudio",
+  "version": "1.0.0",
+  "description": "A browser-based SQL learning platform for practicing SQL queries with real-time execution and intelligent hints",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "client": "npm run dev --workspace=frontend",
+    "server": "npm run dev --workspace=backend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build": "npm run build --workspace=frontend"
+  },
+  "keywords": [
+    "sql",
+    "learning",
+    "postgresql",
+    "education",
+    "monaco-editor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

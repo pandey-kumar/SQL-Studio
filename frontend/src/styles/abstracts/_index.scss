@@ -1,0 +1,14 @@
+// ==========================================
+// ABSTRACTS INDEX - Import all abstracts
+// ==========================================
+
+// Forward variables first (they don't depend on anything)
+@forward 'variables';
+@forward 'breakpoints';
+
+// Forward animations (they don't depend on variables)
+@forward 'animations';
+
+// Forward mixins (which use variables and breakpoints)
+// Note: Mixins need to @use their dependencies internally
+@forward 'mixins';

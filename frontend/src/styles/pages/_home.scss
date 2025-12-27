@@ -1,0 +1,347 @@
+// ==========================================
+// HOME PAGE STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.home {
+  min-height: calc(100vh - 64px);
+  
+  @include lg {
+    min-height: calc(100vh - 72px);
+  }
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 0;
+  
+  @include sm {
+    padding: 4rem 0;
+  }
+  
+  @include lg {
+    padding: 5rem 0;
+  }
+  
+  // Background effects
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;
+    height: 100%;
+    background: radial-gradient(ellipse at 50% 0%, rgba($primary-500, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($accent-500, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+    
+    @include max-md {
+      display: none;
+    }
+  }
+  
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+  
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  &__badge {
+    @include flex-center;
+    gap: 0.5rem;
+    width: fit-content;
+    margin: 0 auto 1.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba($primary-500, 0.1);
+    border: 1px solid rgba($primary-500, 0.2);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $primary-400;
+    
+    @include sm {
+      font-size: 0.8125rem;
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &__title {
+    @include heading-1;
+    margin-bottom: 1.25rem;
+    
+    .highlight {
+      background: $gradient-hero;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  &__subtitle {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $text-secondary;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @include sm {
+      font-size: 1.125rem;
+    }
+    
+    @include lg {
+      font-size: 1.25rem;
+    }
+  }
+  
+  &__actions {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  &__stats {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid $border-primary;
+    
+    @include sm {
+      gap: 3rem;
+    }
+  }
+  
+  &__stat {
+    text-align: center;
+    
+    &-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-primary;
+      
+      @include sm {
+        font-size: 2rem;
+      }
+      
+      span {
+        background: $gradient-accent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+    
+    &-label {
+      font-size: 0.8125rem;
+      color: $text-muted;
+      margin-top: 0.25rem;
+    }
+  }
+}
+
+// Features Section
+.features {
+  padding: 4rem 0;
+  background: $bg-secondary;
+  
+  @include lg {
+    padding: 5rem 0;
+  }
+  
+  &__container {
+    @include container;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  &__title {
+    @include heading-2;
+    margin-bottom: 0.75rem;
+  }
+  
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  &__card {
+    @include card-base;
+    @include card-hover;
+    padding: 1.5rem;
+    
+    @include lg {
+      padding: 2rem;
+    }
+  }
+  
+  &__icon {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    
+    @include lg {
+      width: 56px;
+      height: 56px;
+    }
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      
+      @include lg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+    
+    &--primary {
+      background: rgba($primary-500, 0.15);
+      color: $primary-400;
+    }
+    
+    &--accent {
+      background: rgba($accent-500, 0.15);
+      color: $accent-400;
+    }
+    
+    &--success {
+      background: rgba($success-500, 0.15);
+      color: $success-400;
+    }
+  }
+  
+  &__card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__card-description {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// Assignments Preview Section
+.assignments-preview {
+  padding: 4rem 0;
+  
+  @include lg {
+    padding: 5rem 0;
+  }
+  
+  &__container {
+    @include container;
+  }
+  
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  &__title {
+    @include heading-2;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include xl {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// CTA Section
+.cta {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba($primary-500, 0.1) 0%, rgba($accent-500, 0.05) 100%);
+  border-top: 1px solid $border-primary;
+  border-bottom: 1px solid $border-primary;
+  
+  @include lg {
+    padding: 5rem 0;
+  }
+  
+  &__container {
+    @include container;
+    text-align: center;
+  }
+  
+  &__title {
+    @include heading-2;
+    margin-bottom: 0.75rem;
+  }
+  
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 1rem;
+  }
+}

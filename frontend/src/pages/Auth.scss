@@ -1,0 +1,344 @@
+@use '../styles/abstracts' as *;
+
+.auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-4;
+  position: relative;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba($primary-500, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 100% 50%,
+        rgba($accent-500, 0.1) 0%,
+        transparent 40%
+      );
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba($gray-700, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($gray-700, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  &__card {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-secondary);
+    border-radius: $radius-2xl;
+    padding: $spacing-8;
+    box-shadow: $shadow-2xl;
+
+    @include breakpoint(sm) {
+      padding: $spacing-10;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-8;
+  }
+
+  &__logo {
+    display: inline-block;
+    margin-bottom: $spacing-6;
+
+    &-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: $text-2xl;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: $spacing-2;
+  }
+
+  &__subtitle {
+    color: var(--text-secondary);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  &__label {
+    font-size: $text-sm;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    svg {
+      position: absolute;
+      left: $spacing-4;
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-3 $spacing-4 $spacing-3 $spacing-12;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-secondary);
+    border-radius: $radius-xl;
+    color: var(--text-primary);
+    font-size: $text-base;
+    transition: all $transition-fast;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-500;
+      box-shadow: 0 0 0 3px rgba($primary-500, 0.15);
+    }
+  }
+
+  &__toggle-password {
+    @include button-reset;
+    position: absolute;
+    right: $spacing-4;
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted);
+    transition: color $transition-fast;
+
+    svg {
+      position: static;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      color: var(--text-secondary);
+    }
+  }
+
+  &__field-error {
+    font-size: $text-xs;
+    color: $error-400;
+    margin-top: $spacing-1;
+  }
+
+  &__password-strength {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-top: $spacing-2;
+
+    &-bar {
+      flex: 1;
+      height: 4px;
+      background: $gray-700;
+      border-radius: $radius-full;
+      overflow: hidden;
+    }
+
+    &-fill {
+      height: 100%;
+      border-radius: $radius-full;
+      transition: all $transition-normal;
+
+      &--success {
+        background: $success-500;
+      }
+
+      &--warning {
+        background: $warning-500;
+      }
+
+      &--error {
+        background: $error-500;
+      }
+    }
+
+    &-label {
+      font-size: $text-xs;
+      font-weight: 500;
+      flex-shrink: 0;
+
+      &--success {
+        color: $success-400;
+      }
+
+      &--warning {
+        color: $warning-400;
+      }
+
+      &--error {
+        color: $error-400;
+      }
+    }
+  }
+
+  &__submit {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $spacing-4;
+    background: $gradient-primary;
+    border-radius: $radius-xl;
+    color: white;
+    font-weight: 600;
+    font-size: $text-base;
+    transition: all $transition-fast;
+    margin-top: $spacing-2;
+
+    &:hover:not(:disabled) {
+      box-shadow: $glow-primary;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    &--loading {
+      pointer-events: none;
+    }
+
+    &-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(white, 0.3);
+      border-top-color: white;
+      border-radius: $radius-full;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    margin: $spacing-6 0;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-secondary);
+    }
+
+    span {
+      font-size: $text-sm;
+      color: var(--text-muted);
+    }
+  }
+
+  &__guest-btn {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    background: transparent;
+    border: 1px solid var(--border-secondary);
+    border-radius: $radius-xl;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all $transition-fast;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform $transition-fast;
+    }
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border-color: var(--border-primary);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    margin-top: $spacing-6;
+    color: var(--text-muted);
+    font-size: $text-sm;
+  }
+
+  &__link {
+    color: $primary-400;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-300;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

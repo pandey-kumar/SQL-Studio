@@ -1,0 +1,378 @@
+// ==========================================
+// MIXINS - Reusable Style Patterns
+// ==========================================
+
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+// Flexbox shortcuts
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Grid shortcuts
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Typography mixins
+@mixin heading-1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  
+  @include sm {
+    font-size: 2.5rem;
+  }
+  
+  @include lg {
+    font-size: 3rem;
+  }
+  
+  @include xl {
+    font-size: 3.5rem;
+  }
+}
+
+@mixin heading-2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  
+  @include sm {
+    font-size: 1.75rem;
+  }
+  
+  @include lg {
+    font-size: 2rem;
+  }
+}
+
+@mixin heading-3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  
+  @include sm {
+    font-size: 1.375rem;
+  }
+  
+  @include lg {
+    font-size: 1.5rem;
+  }
+}
+
+@mixin body-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  
+  @include sm {
+    font-size: 1rem;
+  }
+}
+
+@mixin small-text {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  
+  @include sm {
+    font-size: 0.875rem;
+  }
+}
+
+@mixin code-text {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+  
+  @include lg {
+    font-size: 0.9375rem;
+  }
+}
+
+// Card styles
+@mixin card-base {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+@mixin card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include hover {
+    transform: translateY(-4px);
+    border-color: $border-accent;
+    box-shadow: $shadow-glow;
+  }
+}
+
+@mixin glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-secondary);
+  border-radius: 16px;
+}
+
+// Button reset (removes default button styles)
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// Button styles
+@mixin button-base {
+  @include flex-center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px; // Touch-friendly
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $gradient-primary;
+  color: white;
+  
+  @include hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-secondary);
+  
+  @include hover {
+    background: var(--bg-elevated);
+    border-color: $primary-500;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  
+  @include hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+}
+
+// Input styles
+@mixin input-base {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  
+  &::placeholder {
+    color: var(--text-muted);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-500;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  }
+}
+
+// Badge styles
+@mixin badge-base {
+  @include flex-center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@mixin badge-easy {
+  @include badge-base;
+  background: rgba($success-500, 0.15);
+  color: $success-400;
+  border: 1px solid rgba($success-500, 0.3);
+}
+
+@mixin badge-medium {
+  @include badge-base;
+  background: rgba($warning-500, 0.15);
+  color: $warning-400;
+  border: 1px solid rgba($warning-500, 0.3);
+}
+
+@mixin badge-hard {
+  @include badge-base;
+  background: rgba($error-500, 0.15);
+  color: $error-400;
+  border: 1px solid rgba($error-500, 0.3);
+}
+
+// Alias badge mixins for semantic naming
+@mixin badge-success {
+  @include badge-easy;
+}
+
+@mixin badge-warning {
+  @include badge-medium;
+}
+
+@mixin badge-error {
+  @include badge-hard;
+}
+
+// Animation mixins
+@mixin fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@mixin slide-up {
+  animation: slideUp 0.4s ease forwards;
+}
+
+@mixin pulse {
+  animation: pulse 2s infinite;
+}
+
+// Scrollbar styling
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $bg-secondary;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $dark-600;
+    border-radius: 3px;
+    
+    &:hover {
+      background: $dark-500;
+    }
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  
+  @include sm {
+    padding: 0 1.5rem;
+  }
+  
+  @include lg {
+    padding: 0 2rem;
+  }
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Absolute positioning
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// Focus visible
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $primary-500;
+    outline-offset: 2px;
+  }
+}

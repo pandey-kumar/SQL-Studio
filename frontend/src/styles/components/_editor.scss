@@ -1,0 +1,329 @@
+// ==========================================
+// EDITOR COMPONENT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid $border-primary;
+  background: $bg-secondary;
+}
+
+.editor-header {
+  @include flex-between;
+  padding: 0.75rem 1rem;
+  background: $bg-tertiary;
+  border-bottom: 1px solid $border-primary;
+  flex-shrink: 0;
+  
+  &__title {
+    @include flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      color: $accent-400;
+    }
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 0.5rem;
+  }
+}
+
+.editor-body {
+  flex: 1;
+  min-height: 200px;
+  overflow: hidden;
+  
+  // Monaco editor overrides
+  .monaco-editor {
+    .margin {
+      background: $bg-secondary !important;
+    }
+    
+    .monaco-editor-background {
+      background: $bg-secondary !important;
+    }
+    
+    .minimap {
+      background: $bg-secondary !important;
+    }
+  }
+}
+
+.editor-footer {
+  @include flex-between;
+  padding: 0.625rem 1rem;
+  background: $bg-tertiary;
+  border-top: 1px solid $border-primary;
+  flex-shrink: 0;
+  
+  &__info {
+    @include flex-start;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: $text-muted;
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 0.5rem;
+  }
+}
+
+// SQL Editor specific
+.sql-editor {
+  &__toolbar {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, rgba($primary-500, 0.05) 0%, rgba($accent-500, 0.03) 100%);
+    border-bottom: 1px solid $border-primary;
+  }
+  
+  &__run-btn {
+    @include button-base;
+    background: $gradient-success;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    
+    @include hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba($success-500, 0.4);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &__hint-btn {
+    @include button-base;
+    background: rgba($warning-500, 0.1);
+    color: $warning-400;
+    border: 1px solid rgba($warning-500, 0.3);
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    
+    @include hover {
+      background: rgba($warning-500, 0.2);
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &__reset-btn {
+    @include button-ghost;
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// Results panel
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid $border-primary;
+  background: $bg-secondary;
+  
+  &__header {
+    @include flex-between;
+    padding: 0.75rem 1rem;
+    background: $bg-tertiary;
+    border-bottom: 1px solid $border-primary;
+    flex-shrink: 0;
+  }
+  
+  &__title {
+    @include flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &__stats {
+    @include flex-start;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: $text-muted;
+    
+    span {
+      @include flex-center;
+      gap: 0.25rem;
+    }
+  }
+  
+  &__body {
+    flex: 1;
+    overflow: auto;
+    
+    @include custom-scrollbar;
+  }
+  
+  &__empty {
+    @include flex-column-center;
+    gap: 0.75rem;
+    height: 100%;
+    min-height: 150px;
+    color: $text-muted;
+    
+    svg {
+      width: 40px;
+      height: 40px;
+      opacity: 0.5;
+    }
+    
+    p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+  
+  &__error {
+    padding: 1rem;
+    background: rgba($error-500, 0.1);
+    border: 1px solid rgba($error-500, 0.2);
+    border-radius: 8px;
+    margin: 1rem;
+    
+    &-title {
+      @include flex-start;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $error-400;
+      margin-bottom: 0.5rem;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    
+    &-message {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      color: $text-secondary;
+      line-height: 1.6;
+    }
+  }
+  
+  &__success {
+    @include flex-column-center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+    
+    &-icon {
+      width: 64px;
+      height: 64px;
+      @include flex-center;
+      background: rgba($success-500, 0.15);
+      border-radius: 50%;
+      
+      svg {
+        width: 32px;
+        height: 32px;
+        color: $success-400;
+      }
+    }
+    
+    &-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: $success-400;
+    }
+    
+    &-message {
+      font-size: 0.875rem;
+      color: $text-secondary;
+    }
+  }
+}
+
+// Hint panel
+.hint-panel {
+  @include card-base;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, rgba($warning-500, 0.05) 0%, rgba($warning-600, 0.02) 100%);
+  border-color: rgba($warning-500, 0.2);
+  
+  &__header {
+    @include flex-between;
+    margin-bottom: 0.75rem;
+  }
+  
+  &__title {
+    @include flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $warning-400;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  &__close {
+    @include flex-center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    color: $text-muted;
+    transition: all 0.2s ease;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    &:hover {
+      background: rgba($warning-500, 0.1);
+      color: $warning-400;
+    }
+  }
+  
+  &__content {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.7;
+  }
+}

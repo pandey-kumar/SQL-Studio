@@ -1,0 +1,255 @@
+// ==========================================
+// HEADER LAYOUT STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--header-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-primary);
+  transition: background-color 0.3s ease;
+  
+  &__container {
+    @include container;
+    @include flex-between;
+    height: 64px;
+    
+    @include lg {
+      height: 72px;
+    }
+  }
+  
+  &__left {
+    @include flex-start;
+    gap: 2rem;
+  }
+  
+  &__logo {
+    @include flex-center;
+    gap: 0.625rem;
+    text-decoration: none;
+    
+    &-icon {
+      width: 36px;
+      height: 36px;
+      
+      @include lg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    
+    &-text {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      
+      @include lg {
+        font-size: 1.25rem;
+      }
+      
+      span {
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+  
+  &__nav {
+    display: none;
+    
+    @include lg {
+      @include flex-center;
+      gap: 0.25rem;
+    }
+  }
+  
+  &__nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: var(--text-primary);
+      background: var(--bg-hover);
+    }
+    
+    &--active {
+      color: $primary-400;
+      background: rgba($primary-500, 0.1);
+    }
+  }
+  
+  &__right {
+    @include flex-center;
+    gap: 0.75rem;
+  }
+  
+  &__search {
+    display: none;
+    
+    @include md {
+      display: block;
+    }
+    
+    .search-input__input {
+      width: 240px;
+      background: var(--bg-secondary);
+      
+      @include lg {
+        width: 300px;
+      }
+    }
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 0.5rem;
+  }
+  
+  &__user {
+    @include flex-center;
+    gap: 0.75rem;
+    padding: 0.375rem;
+    padding-right: 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-color: var(--border-secondary);
+    }
+    
+    &-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: $gradient-primary;
+      @include flex-center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+    }
+    
+    &-info {
+      display: none;
+      
+      @include sm {
+        display: block;
+      }
+    }
+    
+    &-name {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    &-points {
+      font-size: 0.6875rem;
+      color: $accent-400;
+    }
+  }
+  
+  &__menu-btn {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    
+    @include lg {
+      display: none;
+    }
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    &:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+  }
+}
+
+// Mobile menu
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  z-index: 40;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  
+  @include lg {
+    display: none;
+  }
+  
+  &--open {
+    transform: translateX(0);
+  }
+  
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  &__link {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    
+    &:hover,
+    &--active {
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+    
+    &--active {
+      color: $primary-400;
+    }
+  }
+  
+  &__search {
+    margin-bottom: 0.5rem;
+  }
+  
+  &__divider {
+    height: 1px;
+    background: var(--border-primary);
+    margin: 0.5rem 0;
+  }
+  
+  &__auth {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-primary);
+  }
+}

@@ -1,0 +1,331 @@
+// ==========================================
+// ASSIGNMENTS PAGE STYLES
+// ==========================================
+
+@use '../abstracts' as *;
+
+.assignments-page {
+  min-height: calc(100vh - 64px);
+  padding: 1.5rem 0;
+  
+  @include sm {
+    padding: 2rem 0;
+  }
+  
+  @include lg {
+    min-height: calc(100vh - 72px);
+    padding: 2.5rem 0;
+  }
+  
+  &__container {
+    @include container;
+  }
+  
+  &__header {
+    margin-bottom: 2rem;
+    
+    @include lg {
+      margin-bottom: 2.5rem;
+    }
+  }
+  
+  &__title {
+    @include heading-2;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__subtitle {
+    font-size: 1rem;
+    color: $text-secondary;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+    @include lg {
+      flex-direction: row;
+    }
+  }
+  
+  &__sidebar {
+    @include lg {
+      width: 280px;
+      flex-shrink: 0;
+    }
+  }
+  
+  &__main {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// Filters sidebar
+.filters {
+  @include card-base;
+  padding: 1.25rem;
+  position: sticky;
+  top: 88px;
+  
+  @include max-lg {
+    position: relative;
+    top: auto;
+  }
+  
+  &__section {
+    &:not(:last-child) {
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid $border-primary;
+    }
+  }
+  
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.875rem;
+  }
+  
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  &__option {
+    @include flex-between;
+    padding: 0.625rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: $bg-elevated;
+      color: $text-primary;
+    }
+    
+    &--active {
+      background: rgba($primary-500, 0.1);
+      color: $primary-400;
+    }
+  }
+  
+  &__count {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    background: $bg-tertiary;
+    border-radius: 4px;
+    color: $text-muted;
+  }
+  
+  &__difficulty {
+    @include flex-start;
+    gap: 0.5rem;
+    
+    .filters__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      
+      &--easy { background: $success-500; }
+      &--medium { background: $warning-500; }
+      &--hard { background: $error-500; }
+    }
+  }
+  
+  &__clear {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+    color: $text-muted;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: $bg-elevated;
+      color: $text-secondary;
+    }
+  }
+}
+
+// Search and toolbar
+.assignments-toolbar {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  
+  &__search {
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: 0.75rem;
+  }
+  
+  &__sort {
+    @include flex-center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: $text-secondary;
+    
+    select {
+      padding: 0.5rem 2rem 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+      background: $bg-tertiary;
+      border: 1px solid $border-primary;
+      border-radius: 8px;
+      color: $text-primary;
+      cursor: pointer;
+    }
+  }
+  
+  &__view {
+    @include flex-center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: $bg-tertiary;
+    border-radius: 8px;
+    
+    &-btn {
+      @include flex-center;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      color: $text-muted;
+      
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      &:hover {
+        color: $text-secondary;
+      }
+      
+      &--active {
+        background: $bg-elevated;
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+// Assignments grid/list
+.assignments-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  &--grid {
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include xl {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// Pagination
+.pagination {
+  @include flex-center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  
+  &__btn {
+    @include flex-center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+    background: $bg-secondary;
+    border: 1px solid $border-primary;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &:hover:not(:disabled) {
+      background: $bg-tertiary;
+      color: $text-primary;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &--active {
+      background: $primary-500;
+      border-color: $primary-500;
+      color: white;
+      
+      &:hover {
+        background: $primary-600;
+      }
+    }
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  &__ellipsis {
+    color: $text-muted;
+  }
+  
+  &__info {
+    font-size: 0.8125rem;
+    color: $text-muted;
+    margin-left: 1rem;
+  }
+}
+
+// Empty state
+.empty-state {
+  @include flex-column-center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  
+  &__icon {
+    width: 80px;
+    height: 80px;
+    @include flex-center;
+    background: $bg-tertiary;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    
+    svg {
+      width: 40px;
+      height: 40px;
+      color: $text-muted;
+    }
+  }
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+  
+  &__description {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    max-width: 400px;
+  }
+}
