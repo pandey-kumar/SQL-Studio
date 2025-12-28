@@ -170,7 +170,7 @@ const Assignments = () => {
                   }`}
                   onClick={() => handleCategoryChange(selectedCategory === cat ? '' : cat)}
                 >
-                  <span className="assignments__filter-icon">{CATEGORY_ICONS[cat]}</span>
+                  <span className="assignments__filter-icon"><i className={CATEGORY_ICONS[cat]}></i></span>
                   {cat}
                 </button>
               ))}
