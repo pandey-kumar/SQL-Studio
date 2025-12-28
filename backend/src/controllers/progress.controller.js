@@ -182,6 +182,13 @@ exports.useHint = async (req, res, next) => {
       }
     });
   } catch (error) {
+    // Handle MongoDB duplicate key error gracefully
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.userId && error.keyPattern.assignmentId) {
+      return res.status(409).json({
+        success: false,
+        message: 'Progress record already exists for this user and assignment. Please try again or contact support if this persists.'
+      });
+    }
     next(error);
   }
 };
